@@ -43,3 +43,18 @@ export const validationLogin :any =[
         .isString().isEmail(),
         handleValidationErrors
 ]
+
+
+export const validationItem :any =[
+    body("name")
+        .notEmpty().withMessage("Please provide a name")
+        .isString(),
+    body("description")
+        .notEmpty().withMessage("please provide a decription")
+        .isString()
+        .isLength({ min:50 }).withMessage("please write atleast 50 characters"),
+    body("quantity")
+        .notEmpty().withMessage("please proivde a quantity")
+        .isInt().withMessage("please provide a number"),   
+        handleValidationErrors
+]

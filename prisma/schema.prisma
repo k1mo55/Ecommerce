@@ -23,5 +23,16 @@ model User{
   email String @unique
   password String
   address String
+  items Items[]
+  isVendor Boolean @default(false)
 }
 
+
+model Items {
+  id String @id @default(uuid())
+  name String 
+  description String
+  quantity Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  userId String  
+}

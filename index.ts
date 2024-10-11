@@ -3,7 +3,7 @@ import "dotenv/config"
 import cookieParser from 'cookie-parser'
 import express from "express"
 import userRoutes from './Routes/userRoutes'
-
+import itemsRoutes from './Routes/itemsRoutes'
 
 const app = express();
 app.use(express.json());
@@ -18,7 +18,7 @@ app.use(
 
 
 app.use('/api/user',userRoutes)
-
+app.use('/api/items',itemsRoutes)
 app.listen(5000 ,()=>{
     console.log("server is running on 5000 and the database connctd")
 
