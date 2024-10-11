@@ -24,6 +24,7 @@ model User{
   password String
   address String
   items Items[]
+  comments Comments[]
   isVendor Boolean @default(false)
 }
 
@@ -35,4 +36,18 @@ model Items {
   quantity Int
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   userId String  
+
+  comments Comments[]
+}
+
+model Comments {
+  id String @id @default(uuid())
+  content String 
+
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  userId String
+
+  items Items @relation(fields: [itemId],references: [id],onDelete: Cascade)
+  itemId String
+
 }

@@ -77,21 +77,16 @@ const updateItem = async( req:Request , res:Response ):Promise<any> =>{
                 quantity:quantity
             }
         })
-        
         res.status(200).json(item)
-
     }catch(err){
         if (err instanceof Prisma.PrismaClientKnownRequestError) {
             if (err.code === 'P2025') {
                 res.status(409).json( { message: "item not found" } )
               }
-
         }else{
             res.json(501).json({ meessage:"internal server error" })
         }
-
     }
-
 }
 
 
