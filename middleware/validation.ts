@@ -55,6 +55,10 @@ export const validationItem :any =[
         .isLength({ min:50 }).withMessage("please write atleast 50 characters"),
     body("quantity")
         .notEmpty().withMessage("please proivde a quantity")
-        .isInt().withMessage("please provide a number"),   
-        handleValidationErrors
+        .isInt().withMessage("please provide a number"),
+    body("price")
+    .notEmpty().withMessage("please proivde a quantity")
+    .isInt().withMessage("please provide a number"),  
+    handleValidationErrors
 ]
+

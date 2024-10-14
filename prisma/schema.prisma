@@ -25,6 +25,7 @@ model User{
   address String
   items Items[]
   comments Comments[]
+  rating Rating[]
   isVendor Boolean @default(false)
 }
 
@@ -34,9 +35,12 @@ model Items {
   name String 
   description String
   quantity Int
+  price Int
+  rate Int @default(5)
   user User @relation(fields: [userId],references: [id],onDelete: Cascade)
   userId String  
 
+  rating Rating[]
   comments Comments[]
 }
 
@@ -49,5 +53,17 @@ model Comments {
 
   items Items @relation(fields: [itemId],references: [id],onDelete: Cascade)
   itemId String
+}
 
+
+model Rating{
+  id String @id @default(uuid())
+  number Int
+  user User @relation(fields: [userId],references: [id],onDelete: Cascade)
+  userId String 
+
+  items Items @relation(fields: [itemId],references: [id],onDelete: Cascade)
+  itemId String
+
+  @@unique([userId, itemId])
 }

@@ -5,7 +5,7 @@ const prisma = new PrismaClient()
 const writeComments = async ( req:Request , res:Response ):Promise<any> =>{
     try{
         const { content } = req.body
-        const user = await prisma.user.findUnique({
+        const user = await prisma.user.findFirst({
             where:{
                 id:req.userId,
                 isVendor:false
@@ -64,9 +64,6 @@ const updateComment = async ( req:Request , res:Response ):Promise<any> =>{
     }catch(err){
         res.json(500).json({ message:"internal server error" })
     }
-
-
-
 }
 
 const getItemComments = async ( req:Request , res:Response ):Promise<any> =>{
@@ -115,7 +112,7 @@ const getMyComments = async ( req:Request , res:Response ):Promise<any> =>{
         res.json(500).json({ message:"internal server error" })
     }
 
-    
+
 }
 
 

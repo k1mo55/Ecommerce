@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Items" ALTER COLUMN "rate" SET DEFAULT 5;

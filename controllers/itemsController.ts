@@ -3,15 +3,17 @@ import { PrismaClient, Prisma, User } from '@prisma/client'
 const prisma = new PrismaClient()
 const insertItems = async ( req:Request , res:Response ) :Promise<any> =>{
     try{
-        const { name , description , quantity } = req.body;
+        const { name , description , quantity , price } = req.body;
         const vendorId = req.user.id
         let intquantity = parseInt(quantity)  // because validation js validate "1" same as 1 i kakee sure it is an int before inserting
+        let intprice = parseInt(price)
         const item = await prisma.items.create({
             data:{
                 name:name,
                 description:description,
                 quantity:intquantity,
-                userId:vendorId   
+                userId:vendorId,
+                price:intprice   
             }
         })
         res.status(201).json(item);
@@ -63,7 +65,7 @@ const getOneItem = async( req:Request , res:Response ):Promise<any> =>{
 
 const updateItem = async( req:Request , res:Response ):Promise<any> =>{
     try{
-        const { name , description , quantity } = req.body;
+        const { name , description , quantity , price } = req.body;
         const itemId = req.params.itemId
         const userId = req.userId
         const item = await prisma.items.update({
@@ -74,7 +76,8 @@ const updateItem = async( req:Request , res:Response ):Promise<any> =>{
             data:{
                 name:name,
                 description:description,
-                quantity:quantity
+                quantity:quantity,
+                price:price
             }
         })
         res.status(200).json(item)

@@ -5,6 +5,8 @@ import express from "express"
 import userRoutes from './Routes/userRoutes'
 import itemsRoutes from './Routes/itemsRoutes'
 import commentsRouter from './Routes/commentsRouter'
+import ratingRouter from './Routes/ratingRouter'
+import searchRouter from './Routes/searchRouter'
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -20,6 +22,8 @@ app.use(
 app.use('/api/user',userRoutes)
 app.use('/api/items',itemsRoutes)
 app.use('/api/comments',commentsRouter)
+app.use('/api/rating',ratingRouter)
+app.use('/api/search',searchRouter)
 
 app.listen(5000 ,()=>{
     console.log("server is running on 5000 and the database connctd")
